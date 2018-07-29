@@ -2,31 +2,56 @@ package Qien.Weekopdracht4;
 
 import java.util.Scanner;
 
-class Klantreis{
-
+abstract class Klantreis{
+abstract void naarVolgendeFase();
 }
-class Fase1{ //orientatie
-    // methodes: chat/onderzoek/praten/reviews/zelftest // schrijven test
-    int chatten(){ // void naar int!
-        int x = 0;
-        return x;
+class Fase1 extends Klantreis{ //orientatiefase
+    // methodes: chat/onderzoek/praten/reviews/zelftest // schrijven test (niet meer van toepassing)
+    Klant misterY = new Klant();
+    Fase1(Klant misterY){
+        boolean chat;
+        boolean onderzoek;
+        boolean praat;
+        boolean review;
+        boolean zelftest;
+    }
+    int counterLaag = 0;
+    int counterHoog = 0;
+    int chatten(boolean chat){
+        System.out.println("U heeft besloten om te chatten met een medewerker voor meer informatie");
+        counterLaag = ++counterLaag;
+        chat = true;
+        return counterLaag;
+    }
+    void naarVolgendeFase(){
+        return;
     }
 }
-class Fase2{ //beslis
+class Fase2 extends Klantreis{ //beslisfase
     // methodes:
-
+    void naarVolgendeFase(){
+        return;
+    }
 }
-class Fase3{ //wacht
-
+class Fase3 extends Klantreis{ //wachtfase
+    void naarVolgendeFase(){
+        return;
+    }
 }
-class Fase4{ //start
-
+class Fase4 extends Klantreis{ //startfase
+    void naarVolgendeFase(){
+        return;
+    }
 }
-class Fase5{ //behandeling
-
+class Fase5 extends Klantreis{ //behandelingfase
+    void naarVolgendeFase(){
+        return;
+    }
 }
-class Fase6{ //genezen
-
+class Fase6 extends Klantreis{ //genezenfase
+    void naarVolgendeFase(){
+        return;
+    }
 }
 
 class Klant {
@@ -117,12 +142,9 @@ class Klant {
         }      //  System.out.println(fase1); // CHECK
         fase1 = true;
         return this.fase1;
-
     }
 
     int[] klachtenArray = new int[10];
-    //[Piekeren,Slaapproblemen,Eenzaamheid,SOA,Dronken,junkie,
-
     int klachten() throws nummerException{
         if (klachtenArray[0] == 0) {
                 Scanner inputC = new Scanner(System.in);
@@ -213,31 +235,63 @@ class Klant {
                 klachtenArray[5] = i;
                 return klachtenArray[5];
             }
-            
+
         }else if (klachtenArray[6] == 0) {
             Scanner inputC = new Scanner(System.in);
             System.out.println("7/10) Raakt u wel eens in paniek? \n     1 - JA. \n     2 - NEE");
             int i = inputC.nextInt();
-            klachtenArray[6] = i;
-            return klachtenArray[6];
+            if (i >3)
+                try {
+                    System.out.println("U kunt alleen 01 (wat staat voor JA) of 02 (wat staat voor NEE) kiezen!");
+                    klachten();
+                } catch (Exception a){
+                }
+            else if (i<3) {
+                klachtenArray[6] = i;
+                return klachtenArray[6];
+            }
         }else if (klachtenArray[7] == 0) {
             Scanner inputC = new Scanner(System.in);
             System.out.println("8/10) Voelt u zich wel eens somber? \n     1 - JA. \n     2 - NEE");
             int i = inputC.nextInt();
-            klachtenArray[7] = i;
-            return klachtenArray[7];
+            if (i >3)
+                try {
+                    System.out.println("U kunt alleen 01 (wat staat voor JA) of 02 (wat staat voor NEE) kiezen!");
+                    klachten();
+                } catch (Exception a){
+                }
+            else if (i<3) {
+                klachtenArray[7] = i;
+                return klachtenArray[7];
+            }
         }else if (klachtenArray[8] == 0) {
             Scanner inputC = new Scanner(System.in);
             System.out.println("9/10) Heeft u een laag zelfbeeld? \n     1 - JA. \n     2 - NEE");
             int i = inputC.nextInt();
-            klachtenArray[8] = i;
-            return klachtenArray[8];
+            if (i >3)
+                try {
+                    System.out.println("U kunt alleen 01 (wat staat voor JA) of 02 (wat staat voor NEE) kiezen!");
+                    klachten();
+                } catch (Exception a){
+                }
+            else if (i<3) {
+                klachtenArray[8] = i;
+                return klachtenArray[8];
+            }
         }else if (klachtenArray[9] == 0) {
             Scanner inputC = new Scanner(System.in);
             System.out.println("10/10) Heeft u problemen in uw relatie? \n     1 - JA. \n     2 - NEE");
             int i = inputC.nextInt();
-            klachtenArray[9] = i;
-            return klachtenArray[9];
+            if (i >3)
+                try {
+                    System.out.println("U kunt alleen 01 (wat staat voor JA) of 02 (wat staat voor NEE) kiezen!");
+                    klachten();
+                } catch (Exception a){
+                }
+            else if (i<3) {
+                klachtenArray[9] = i;
+                return klachtenArray[9];
+            }
         }else{
         }
         return 99; // randomnummer lol!
@@ -250,24 +304,24 @@ public class Main {
         Scanner inputA = new Scanner(System.in);
         String u = " - "; // gaat het raam uit maar is nodig
         int z = -1; // gewoon omdat dat de check dan 0 print
- //       int[][] arr = arr[1][1];
         ++z;
+
         Klant misterX = Klant.nieuw(z);
+        Fase1 fase1 = new Fase1(Klant.nieuw(z));
         misterX.leeftijdBepalen(z);
         misterX.geslachtBepalen(u);
         misterX.naamBepalen(u);
         misterX.voorstellen();
         misterX.vragenLijst();
+        fase1.chatten(false);
 
- //       x.klachten(arr [][]);
+
     }
 }
 
-class Overslaan{
-    void overrideSlaFaseOver(){
-        System.out.println("U heeft nog niet alle opdrachten afgerond, wilt u toch doorgaan?");
-
-    }
+interface Overslaan{
+    public void overrideSlaFaseOver();
+ //       System.out.println("U heeft nog niet alle opdrachten afgerond, wilt u toch doorgaan?");
 }
 
 class nummerException extends Exception{}
