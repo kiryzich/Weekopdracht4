@@ -49,7 +49,7 @@ class Klant {
     }
 
     int leeftijdBepalen(int leeftijd) {
-//        System.out.println("De leeftijd is " +leeftijd); //Was een check
+        System.out.println("De leeftijd is " +leeftijd); //Was een check
         System.out.println("================================================================");
         System.out.println("DIT IS EEN FICTIEF PROGRAMMA, dus alle antwoorden en werkwijze zijn niet echt!");
         System.out.println("Om u het beste van dienst te kunnen zijn stellen wij even wat korte vragen.");
@@ -63,7 +63,7 @@ class Klant {
     }
 
     String geslachtBepalen(String s) {
-//        System.out.println("Het geslacht is " +geslacht); //Was een check
+        System.out.println("Het geslacht is " +geslacht); //Was een check
         System.out.println("Wat is uw geslacht?");
         System.out.println("================================================================");
         Scanner inputA = new Scanner(System.in);
@@ -73,7 +73,7 @@ class Klant {
     }
 
     String naamBepalen(String s) {
-//        System.out.println("Het geslacht is " +geslacht); //Was een check
+        System.out.println("De naam is " +naam); //Was een check
         System.out.println("Wat is uw naam?");
         System.out.println("================================================================");
         Scanner inputA = new Scanner(System.in);
@@ -96,6 +96,7 @@ class Klant {
             int y = 0;
             System.out.println("================================================================");
             System.out.println("Wilt u zo vriendelijk zijn de volgende vragenlijst in te vullen?");
+            System.out.println("Deze vragen hebben betrekking op de laatste week.");
             System.out.println("================================================================");
             for (x=0; x<10;x++) {
                 klachten();
@@ -137,36 +138,82 @@ class Klant {
                 klachtenArray[0] = i;
                 return klachtenArray[0];
             }
+
         } else if (klachtenArray[1] == 0) {
             Scanner inputC = new Scanner(System.in);
             System.out.println("2/10) Slaapt u voldoende? \n     1 - JA. \n     2 - NEE");
             int i = inputC.nextInt();
-            klachtenArray[1] = i;
-            return klachtenArray[1];
+            if (i >3)
+                try {
+                    System.out.println("U kunt alleen 01 (wat staat voor JA) of 02 (wat staat voor NEE) kiezen!");
+                    klachten();
+                } catch (Exception a){
+                }
+            else if (i<3) {
+                klachtenArray[1] = i;
+                return klachtenArray[1];
+            }
+
         }else if (klachtenArray[2] == 0) {
             Scanner inputC = new Scanner(System.in);
             System.out.println("3/10) Bent u wel eens eenzaam? \n     1 - JA. \n     2 - NEE");
             int i = inputC.nextInt();
-            klachtenArray[2] = i;
-            return klachtenArray[2];
+            if (i >3)
+                try {
+                    System.out.println("U kunt alleen 01 (wat staat voor JA) of 02 (wat staat voor NEE) kiezen!");
+                    klachten();
+                } catch (Exception a){
+                }
+            else if (i<3) {
+                klachtenArray[2] = i;
+                return klachtenArray[2];
+            }
+
         }else if (klachtenArray[3] == 0) {
             Scanner inputC = new Scanner(System.in);
             System.out.println("4/10) Heeft u problemen op sexueel gebied? \n     1 - JA. \n     2 - NEE");
             int i = inputC.nextInt();
-            klachtenArray[3] = i;
-            return klachtenArray[3];
+            if (i >3)
+                try {
+                    System.out.println("U kunt alleen 01 (wat staat voor JA) of 02 (wat staat voor NEE) kiezen!");
+                    klachten();
+                } catch (Exception a){
+                }
+            else if (i<3) {
+                klachtenArray[3] = i;
+                return klachtenArray[3];
+            }
+
         }else if (klachtenArray[4] == 0) {
             Scanner inputC = new Scanner(System.in);
             System.out.println("5/10) Drinkt u overmatig alcohol? \n     1 - JA. \n     2 - NEE");
             int i = inputC.nextInt();
-            klachtenArray[4] = i;
-            return klachtenArray[4];
+            if (i >3)
+                try {
+                    System.out.println("U kunt alleen 01 (wat staat voor JA) of 02 (wat staat voor NEE) kiezen!");
+                    klachten();
+                } catch (Exception a){
+                }
+            else if (i<3) {
+                klachtenArray[4] = i;
+                return klachtenArray[4];
+            }
+
         }else if (klachtenArray[5] == 0) {
             Scanner inputC = new Scanner(System.in);
             System.out.println("6/10) Gebruikt u regelmatig drugs? \n     1 - JA. \n     2 - NEE");
             int i = inputC.nextInt();
-            klachtenArray[5] = i;
-            return klachtenArray[5];
+            if (i >3)
+                try {
+                    System.out.println("U kunt alleen 01 (wat staat voor JA) of 02 (wat staat voor NEE) kiezen!");
+                    klachten();
+                } catch (Exception a){
+                }
+            else if (i<3) {
+                klachtenArray[5] = i;
+                return klachtenArray[5];
+            }
+            
         }else if (klachtenArray[6] == 0) {
             Scanner inputC = new Scanner(System.in);
             System.out.println("7/10) Raakt u wel eens in paniek? \n     1 - JA. \n     2 - NEE");
