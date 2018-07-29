@@ -7,28 +7,89 @@ abstract void naarVolgendeFase();
 }
 class Fase1 extends Klantreis{ //orientatiefase
     // methodes: chat/onderzoek/praten/reviews/zelftest // schrijven test (niet meer van toepassing)
-    Klant misterY = new Klant();
-    Fase1(Klant misterY){
-        boolean chat;
-        boolean onderzoek;
-        boolean praat;
-        boolean review;
-        boolean zelftest;
+    Fase1(){
+        System.out.println("================================================================");
+        System.out.println("Orientatiefase");
+        System.out.println("================================================================");
     }
+    boolean chat;
+    boolean onderzoek;
+    boolean praat;
+    boolean review;
+    boolean zelftest;
     int counterLaag = 0;
     int counterHoog = 0;
+    int fase1Methodes(){
+        System.out.println("Orientatiefase");
+        System.out.println("================================================================");
+        Scanner inputC = new Scanner(System.in);
+        if (chat == false) {
+            System.out.println("Wilt u met een mederwerker chatten over uw klachten?");
+            System.out.println("Kies 1 voor ja, kies 2 voor nee.");
+            int a = inputC.nextInt();
+            if (a == 1) {
+                chatten(false);
+            }
+        }
+        if (onderzoek == false){
+            System.out.println("Wilt u met een mederwerker chatten over uw klachten?");
+            System.out.println("Kies 1 voor ja, kies 2 voor nee.");
+            int b = inputC.nextInt();
+            if (b == 1){
+                onderzoeken(false);
+            }
+        }
+        return 1;
+    }
     int chatten(boolean chat){
+        System.out.println("================================================================");
         System.out.println("U heeft besloten om te chatten met een medewerker voor meer informatie");
+        System.out.println("Deze heeft u meer inzicht gegeven in uw klachten");
+        System.out.println("================================================================");
         counterLaag = ++counterLaag;
-        chat = true;
+        if (chat == false){
+            this.chat = true;
+        }
         return counterLaag;
     }
-    void naarVolgendeFase(){
+    int onderzoeken(boolean onderzoek){
+        System.out.println("================================================================");
+        System.out.println("U heeft besloten om  online meer onderzoek te doen en op zoek te gaan naar extra informatie");
+        System.out.println("Dit heeft u meer inzicht gegeven in uw klachten");
+        System.out.println("================================================================");
+        counterLaag = ++counterLaag;
+        if (onderzoek == false){
+            this.onderzoek = true;
+        }
+        return counterHoog;
+    }
+    int praten(boolean praat){
+        return counterHoog;
+    }
+    int reviewsLezen(boolean review){
+        return counterLaag;
+    }
+    public void naarVolgendeFase(){
+        if (chat == true){
+            if (onderzoek == true){
+                if (praat == true){
+                    if (review == true){
+                        if (zelftest == true){
+                            Fase2 fase2 = new Fase2();
+                            fase2.fase2Methodes();
+                        }
+                    }
+                }
+            }
+        }
         return;
     }
 }
 class Fase2 extends Klantreis{ //beslisfase
     // methodes:
+    int fase2Methodes(){
+        return 1;
+    }
     void naarVolgendeFase(){
         return;
     }
@@ -55,7 +116,7 @@ class Fase6 extends Klantreis{ //genezenfase
 }
 
 class Klant {
-    int[][] arr = new int[5][6];
+ //   int[][] arr = new int[5][6];
     /*  gevulde array geeft:
         Fase 1  [chat, onderzoek, praten, reviews, zelftest]
         Fase 2  []
@@ -64,7 +125,7 @@ class Klant {
         Fase 5  []
         Fase 6  []
      */
-    int romScore = 0;
+//    int romScore = 0;
     int leeftijd = 0;
     String geslacht = "onbekend";
     String naam = "onbekend";
@@ -74,9 +135,10 @@ class Klant {
     }
 
     int leeftijdBepalen(int leeftijd) {
-        System.out.println("De leeftijd is " +leeftijd); //Was een check
         System.out.println("================================================================");
-        System.out.println("DIT IS EEN FICTIEF PROGRAMMA, dus alle antwoorden en werkwijze zijn niet echt!");
+        System.err.println("DIT IS EEN FICTIEF PROGRAMMA, dus alle antwoorden en werkwijze zijn niet echt!");
+        System.out.println("De leeftijd is " +leeftijd); //Was een check
+        System.out.println();
         System.out.println("Om u het beste van dienst te kunnen zijn stellen wij even wat korte vragen.");
         System.out.println("================================================================");
         System.out.println("Wat is uw leeftijd?");
@@ -88,6 +150,7 @@ class Klant {
     }
 
     String geslachtBepalen(String s) {
+        System.out.println("================================================================");
         System.out.println("Het geslacht is " +geslacht); //Was een check
         System.out.println("Wat is uw geslacht?");
         System.out.println("================================================================");
@@ -98,6 +161,7 @@ class Klant {
     }
 
     String naamBepalen(String s) {
+        System.out.println("================================================================");
         System.out.println("De naam is " +naam); //Was een check
         System.out.println("Wat is uw naam?");
         System.out.println("================================================================");
@@ -110,6 +174,7 @@ class Klant {
     void voorstellen() {
         System.out.println("================================================================");
         System.out.println(" Hallo " + naam + ",\n u bent " + leeftijd + " jaar oud, \n en u bent een " + geslacht + "."); // CHECK!
+        System.out.println("================================================================");
     }
 
     boolean fase1 = false;
@@ -145,18 +210,20 @@ class Klant {
     }
 
     int[] klachtenArray = new int[10];
+    int romCounter;
     int klachten() throws nummerException{
         if (klachtenArray[0] == 0) {
                 Scanner inputC = new Scanner(System.in);
                 System.out.println("1/10) Heeft u last van PIEKEREN? \n    1 - JA. \n     2 - NEE");
                 int i = inputC.nextInt();
-                if (i >3)
+                if (i >2)
             try {
-                System.out.println("U kunt alleen 01 (wat staat voor JA) of 02 (wat staat voor NEE) kiezen!");
+                System.err.println("U kunt alleen 01 (wat staat voor JA) of 02 (wat staat voor NEE) kiezen!");
                 klachten();
             } catch (Exception a){
             }
-            else if (i<3) {
+            else if (i<2) {
+                this.romCounter = ++romCounter;
                 klachtenArray[0] = i;
                 return klachtenArray[0];
             }
@@ -165,13 +232,14 @@ class Klant {
             Scanner inputC = new Scanner(System.in);
             System.out.println("2/10) Slaapt u voldoende? \n     1 - JA. \n     2 - NEE");
             int i = inputC.nextInt();
-            if (i >3)
+            if (i >2)
                 try {
-                    System.out.println("U kunt alleen 01 (wat staat voor JA) of 02 (wat staat voor NEE) kiezen!");
+                    System.err.println("U kunt alleen 01 (wat staat voor JA) of 02 (wat staat voor NEE) kiezen!");
                     klachten();
                 } catch (Exception a){
                 }
-            else if (i<3) {
+            else if (i<2) {
+                this.romCounter = ++romCounter;
                 klachtenArray[1] = i;
                 return klachtenArray[1];
             }
@@ -180,13 +248,14 @@ class Klant {
             Scanner inputC = new Scanner(System.in);
             System.out.println("3/10) Bent u wel eens eenzaam? \n     1 - JA. \n     2 - NEE");
             int i = inputC.nextInt();
-            if (i >3)
+            if (i >2)
                 try {
-                    System.out.println("U kunt alleen 01 (wat staat voor JA) of 02 (wat staat voor NEE) kiezen!");
+                    System.err.println("U kunt alleen 01 (wat staat voor JA) of 02 (wat staat voor NEE) kiezen!");
                     klachten();
                 } catch (Exception a){
                 }
-            else if (i<3) {
+            else if (i<2) {
+                this.romCounter = ++romCounter;
                 klachtenArray[2] = i;
                 return klachtenArray[2];
             }
@@ -195,13 +264,14 @@ class Klant {
             Scanner inputC = new Scanner(System.in);
             System.out.println("4/10) Heeft u problemen op sexueel gebied? \n     1 - JA. \n     2 - NEE");
             int i = inputC.nextInt();
-            if (i >3)
+            if (i >2)
                 try {
-                    System.out.println("U kunt alleen 01 (wat staat voor JA) of 02 (wat staat voor NEE) kiezen!");
+                    System.err.println("U kunt alleen 01 (wat staat voor JA) of 02 (wat staat voor NEE) kiezen!");
                     klachten();
                 } catch (Exception a){
                 }
-            else if (i<3) {
+            else if (i<2) {
+                this.romCounter = ++romCounter;
                 klachtenArray[3] = i;
                 return klachtenArray[3];
             }
@@ -210,13 +280,14 @@ class Klant {
             Scanner inputC = new Scanner(System.in);
             System.out.println("5/10) Drinkt u overmatig alcohol? \n     1 - JA. \n     2 - NEE");
             int i = inputC.nextInt();
-            if (i >3)
+            if (i >2)
                 try {
-                    System.out.println("U kunt alleen 01 (wat staat voor JA) of 02 (wat staat voor NEE) kiezen!");
+                    System.err.println("U kunt alleen 01 (wat staat voor JA) of 02 (wat staat voor NEE) kiezen!");
                     klachten();
                 } catch (Exception a){
                 }
-            else if (i<3) {
+            else if (i<2) {
+                this.romCounter = ++romCounter;
                 klachtenArray[4] = i;
                 return klachtenArray[4];
             }
@@ -225,13 +296,14 @@ class Klant {
             Scanner inputC = new Scanner(System.in);
             System.out.println("6/10) Gebruikt u regelmatig drugs? \n     1 - JA. \n     2 - NEE");
             int i = inputC.nextInt();
-            if (i >3)
+            if (i >2)
                 try {
-                    System.out.println("U kunt alleen 01 (wat staat voor JA) of 02 (wat staat voor NEE) kiezen!");
+                    System.err.println("U kunt alleen 01 (wat staat voor JA) of 02 (wat staat voor NEE) kiezen!");
                     klachten();
                 } catch (Exception a){
                 }
-            else if (i<3) {
+            else if (i<2) {
+                this.romCounter = ++romCounter;
                 klachtenArray[5] = i;
                 return klachtenArray[5];
             }
@@ -240,13 +312,14 @@ class Klant {
             Scanner inputC = new Scanner(System.in);
             System.out.println("7/10) Raakt u wel eens in paniek? \n     1 - JA. \n     2 - NEE");
             int i = inputC.nextInt();
-            if (i >3)
+            if (i >2)
                 try {
-                    System.out.println("U kunt alleen 01 (wat staat voor JA) of 02 (wat staat voor NEE) kiezen!");
+                    System.err.println("U kunt alleen 01 (wat staat voor JA) of 02 (wat staat voor NEE) kiezen!");
                     klachten();
                 } catch (Exception a){
                 }
-            else if (i<3) {
+            else if (i<2) {
+                this.romCounter = ++romCounter;
                 klachtenArray[6] = i;
                 return klachtenArray[6];
             }
@@ -254,13 +327,14 @@ class Klant {
             Scanner inputC = new Scanner(System.in);
             System.out.println("8/10) Voelt u zich wel eens somber? \n     1 - JA. \n     2 - NEE");
             int i = inputC.nextInt();
-            if (i >3)
+            if (i >2)
                 try {
-                    System.out.println("U kunt alleen 01 (wat staat voor JA) of 02 (wat staat voor NEE) kiezen!");
+                    System.err.println("U kunt alleen 01 (wat staat voor JA) of 02 (wat staat voor NEE) kiezen!");
                     klachten();
                 } catch (Exception a){
                 }
-            else if (i<3) {
+            else if (i<2) {
+                this.romCounter = ++romCounter;
                 klachtenArray[7] = i;
                 return klachtenArray[7];
             }
@@ -268,13 +342,14 @@ class Klant {
             Scanner inputC = new Scanner(System.in);
             System.out.println("9/10) Heeft u een laag zelfbeeld? \n     1 - JA. \n     2 - NEE");
             int i = inputC.nextInt();
-            if (i >3)
+            if (i >2)
                 try {
-                    System.out.println("U kunt alleen 01 (wat staat voor JA) of 02 (wat staat voor NEE) kiezen!");
+                    System.err.println("U kunt alleen 01 (wat staat voor JA) of 02 (wat staat voor NEE) kiezen!");
                     klachten();
                 } catch (Exception a){
                 }
-            else if (i<3) {
+            else if (i<2) {
+                this.romCounter = ++romCounter;
                 klachtenArray[8] = i;
                 return klachtenArray[8];
             }
@@ -282,13 +357,14 @@ class Klant {
             Scanner inputC = new Scanner(System.in);
             System.out.println("10/10) Heeft u problemen in uw relatie? \n     1 - JA. \n     2 - NEE");
             int i = inputC.nextInt();
-            if (i >3)
+            if (i >2)
                 try {
-                    System.out.println("U kunt alleen 01 (wat staat voor JA) of 02 (wat staat voor NEE) kiezen!");
+                    System.err.println("U kunt alleen 01 (wat staat voor JA) of 02 (wat staat voor NEE) kiezen!");
                     klachten();
                 } catch (Exception a){
                 }
-            else if (i<3) {
+            else if (i<2) {
+                this.romCounter = ++romCounter;
                 klachtenArray[9] = i;
                 return klachtenArray[9];
             }
@@ -296,30 +372,35 @@ class Klant {
         }
         return 99; // randomnummer lol!
     }
+    int romPrinten(){
+        System.out.println("uw ROM score is " + (romCounter*15));
+        return 377;
+    }
 }
 public class Main {
 
     public static void main(String[] args) throws nummerException{
         // vullen
-        Scanner inputA = new Scanner(System.in);
+//        Scanner inputA = new Scanner(System.in);
         String u = " - "; // gaat het raam uit maar is nodig
         int z = -1; // gewoon omdat dat de check dan 0 print
         ++z;
 
         Klant misterX = Klant.nieuw(z);
-        Fase1 fase1 = new Fase1(Klant.nieuw(z));
         misterX.leeftijdBepalen(z);
         misterX.geslachtBepalen(u);
         misterX.naamBepalen(u);
         misterX.voorstellen();
         misterX.vragenLijst();
-        fase1.chatten(false);
+        misterX.romPrinten();
+        Fase1 fase1 = new Fase1();
+        fase1.fase1Methodes();
 
 
     }
 }
 
-interface Overslaan{
+interface Fase1Overslaan{
     public void overrideSlaFaseOver();
  //       System.out.println("U heeft nog niet alle opdrachten afgerond, wilt u toch doorgaan?");
 }
