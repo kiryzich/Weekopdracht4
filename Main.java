@@ -369,11 +369,18 @@ class Klant {
                 return klachtenArray[9];
             }
         }else{
+ //           romTesten();
         }
         return 99; // randomnummer lol!
     }
-    int romPrinten(){
-        System.out.println("uw ROM score is " + (romCounter*15));
+    int romPrinten() {
+        int ROM = (romCounter*15);
+/*        if (ROM < 60) {
+            romTesten() {
+
+            }
+        }*/
+        System.out.println("uw ROM score is " + ROM);
         return 377;
     }
 }
@@ -403,6 +410,10 @@ public class Main {
 interface Fase1Overslaan{
     public void overrideSlaFaseOver();
  //       System.out.println("U heeft nog niet alle opdrachten afgerond, wilt u toch doorgaan?");
+}
+
+interface romTest{
+    public void romTesten();
 }
 
 class nummerException extends Exception{}
